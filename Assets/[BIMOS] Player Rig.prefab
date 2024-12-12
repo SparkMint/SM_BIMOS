@@ -5768,20 +5768,20 @@ ConfigurableJoint:
   m_XDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -5831,6 +5831,9 @@ MonoBehaviour:
   Controller: {fileID: 1478771343154856604}
   TargetOffsetPosition: {x: 0, y: 0, z: 0}
   TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  pdEnabled: 1
+  pGain: 25
+  dGain: 0.75
 --- !u!114 &1714243675603914674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6942,20 +6945,20 @@ ConfigurableJoint:
   m_XDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 10000
-    positionDamper: 500
-    maximumForce: 5000
+    positionDamper: 1000
+    maximumForce: 1250
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -7005,6 +7008,9 @@ MonoBehaviour:
   Controller: {fileID: 6592363549466593726}
   TargetOffsetPosition: {x: 0, y: 0, z: 0}
   TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  pdEnabled: 1
+  pGain: 25
+  dGain: 0.75
 --- !u!114 &1354081709754906145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15093,7 +15099,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
