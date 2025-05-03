@@ -50,6 +50,34 @@ namespace BIMOS
             GetComponent<Interactable>()?.OnGrab();
         }
 
+        private void FixedUpdate()
+        {
+            if(LeftHand)
+                UpdateJointMotions(LeftHand, ref leftHandCJ);
+            if(RightHand)
+                UpdateJointMotions(RightHand, ref rightHandCJ);
+        }
+
+        private void UpdateJointMotions(Hand hand, ref ConfigurableJoint joint)
+        {
+            if(!hand || !joint)
+                return;
+
+            bool triggerDown = hand.HandInputReader.Trigger > 0.5f;
+
+            if(xMotion == ConfigurableJointMotion.Limited)
+                joint.xMotion = triggerDown ?
+                ConfigurableJointMotion.Locked : ConfigurableJointMotion.Limited;
+
+            if(yMotion == ConfigurableJointMotion.Limited)
+                joint.yMotion = triggerDown ?
+                ConfigurableJointMotion.Locked : ConfigurableJointMotion.Limited;
+
+            if(zMotion == ConfigurableJointMotion.Limited)
+                joint.zMotion = triggerDown ?
+                ConfigurableJointMotion.Locked : ConfigurableJointMotion.Limited;
+        }
+
         private void SetupSlideJoint(Hand hand, ref ConfigurableJoint joint)
         {
             // SM NOTE: All the setup of the required Config Joint happens here.
@@ -58,7 +86,9 @@ namespace BIMOS
 
             joint = hand.PhysicsHandTransform.gameObject.AddComponent<ConfigurableJoint>();
             joint.enableCollision = true;
-            if (transform.TryGetComponent(out Rigidbody rb))  
+
+            var rb = transform.GetComponentInParent<Rigidbody>();
+            if (rb)  
                 joint.connectedBody = rb;
 
             joint.xMotion = xMotion;
@@ -66,8 +96,8 @@ namespace BIMOS
             joint.zMotion = zMotion;
 
             joint.angularXMotion = 
-            joint.angularYMotion = 
-            joint.angularZMotion = ConfigurableJointMotion.Locked;
+                joint.angularYMotion = 
+                joint.angularZMotion = ConfigurableJointMotion.Locked;
 
             joint.linearLimit = new()
             {
